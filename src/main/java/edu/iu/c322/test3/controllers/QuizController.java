@@ -3,7 +3,6 @@ package edu.iu.c322.test3.controllers;
 import edu.iu.c322.test3.model.Quiz;
 import edu.iu.c322.test3.repository.FileRepository;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class QuizController {
     public QuizController(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
-
 
     @PostMapping
     public int add(@RequestBody Quiz quiz) {

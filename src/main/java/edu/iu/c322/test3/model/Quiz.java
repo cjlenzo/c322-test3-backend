@@ -8,7 +8,6 @@ public class Quiz {
     private Integer id;
     private String title;
     private List<Integer> questionIds;
-
     private List<Question> questions;
 
     public Quiz(Integer id, String quizTitle, List<Integer> questionIds) {

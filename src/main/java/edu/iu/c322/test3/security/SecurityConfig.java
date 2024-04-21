@@ -28,8 +28,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private RSAKey rsaKey;
 
+    private RSAKey rsaKey;
 
     public SecurityConfig() {
         this.rsaKey = Jwks.generateRsa();
@@ -43,7 +43,6 @@ public class SecurityConfig {
         return new ProviderManager(authProvider);
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -51,7 +50,7 @@ public class SecurityConfig {
                 .csrf(x -> x.disable())
                 .authorizeHttpRequests( auth -> auth
                         .requestMatchers(
-                                HttpMethod.POST,"/register", "/signin").permitAll()
+                                HttpMethod.POST,"/signup", "/signin").permitAll()
                         .requestMatchers(
                                 HttpMethod.GET,"/").permitAll()
                         .anyRequest().authenticated()
@@ -67,13 +66,14 @@ public class SecurityConfig {
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
+
     @Bean
     JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwks) {
         return new NimbusJwtEncoder(jwks);
     }
+
     @Bean
     JwtDecoder jwtDecoder() throws JOSEException {
         return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
     }
-
 }

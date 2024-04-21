@@ -4,7 +4,6 @@ import edu.iu.c322.test3.model.Question;
 import edu.iu.c322.test3.model.Quiz;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -118,8 +117,6 @@ public class FileRepository {
         return result;
     }
 
-
-
     public List<Question> find(String answer) throws IOException {
         List<Question> animals = findAllQuestions();
         List<Question> result = new ArrayList<>();
@@ -141,8 +138,6 @@ public class FileRepository {
         }
         return result;
     }
-
-
 
     public Question get(Integer id) throws IOException {
         List<Question> questions = findAllQuestions();

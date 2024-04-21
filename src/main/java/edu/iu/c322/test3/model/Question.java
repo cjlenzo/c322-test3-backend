@@ -4,17 +4,17 @@ import java.util.Arrays;
 
 public class Question {
 
+    private Integer id;
+    private String description;
+    private String answer;
+    private String[] choices;
+
     public Question(Integer id, String description, String answer, String[] choices) {
         this.id = id;
         this.description = description;
         this.answer = answer;
         this.choices = choices;
     }
-
-    private Integer id;
-    private String description;
-    private String answer;
-    private String[] choices;
 
     public String toLine() {
         String choicesAsString = String.join(",", getChoices());
